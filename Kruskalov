@@ -1,0 +1,36 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+#define DIM 100
+using namespace std;
+struct grana
+{
+	int cvor1, cvor2, tezina;
+};
+bool manji(grana& g1, grana& g2)
+{
+	return g1.tezina < g2.tezina;
+};
+void stampa(vector <grana>&graf)
+{
+	for (int i = 0; i < graf.size(); i++)
+	{
+		cout <<"Grana"<< graf[i].cvor1 << ", " << graf[i].cvor2 << ", " << graf[i].tezina << endl;
+	}
+}
+int main()
+{
+	grana tmp = {};
+	vector<grana> graf;
+	int bC = 0;
+	cout << "Unesite grane. Slovo na kraju\n\n";
+	while (cin>> tmp.cvor1>>tmp.cvor2>>tmp.tezina)
+	{
+		if (bC < tmp.cvor1) bC = tmp.cvor1;
+		if (bC < tmp.cvor2) bC = tmp.cvor2;
+		graf.push_back(tmp);
+	}
+	sort(graf.begin(), graf.end(), manji);
+	stampa(graf);
+}
